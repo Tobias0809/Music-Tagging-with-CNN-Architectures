@@ -1,3 +1,6 @@
+
+**Note**: The jupyter notebooks and data will be added soon.
+
 # Music Tagging with CNN Architectures
 Deep Learning for Multi-Label Music Classification
 
