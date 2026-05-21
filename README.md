@@ -4,7 +4,7 @@
 # Music Tagging with CNN Architectures
 Deep Learning for Multi-Label Music Classification
 
-Course: Advancesd Machine Learnfing for Natural Language Processing (IT University of Copenhagen)
+Course: Advanced Machine Learnfing for Natural Language Processing (IT University of Copenhagen)
 
 
 
