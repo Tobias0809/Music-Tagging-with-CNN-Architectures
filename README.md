@@ -4,11 +4,8 @@
 # Music Tagging with CNN Architectures
 Deep Learning for Multi-Label Music Classification
 
-Team Members:
+Course: Advancesd Machine Learnfing for Natural Language Processing (IT University of Copenhagen)
 
-Alexander Philipp Seibel (alps@itu.dk)
-
-Tobias Morris Fuchs (tobf@itu.dk)
 
 
 ## 1. Central Problem, Domain & Data
