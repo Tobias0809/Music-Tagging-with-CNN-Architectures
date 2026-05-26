@@ -45,9 +45,9 @@ How to read it
 -	X-axis = time, Y-axis = Mel bins / frequency (0 = low, 128 = high)
 -	Red/white = high activation (model focuses here), black = ignored
 
-<img width="931" height="824" alt="image" src="https://github.com/user-attachments/assets/786a1c89-cc5d-463c-8cf1-190cf163b1ad" />
-<img width="886" height="789" alt="image" src="https://github.com/user-attachments/assets/25327ea5-d34b-4ca0-9578-aa088c0a403a" />
-<img width="882" height="774" alt="image" src="https://github.com/user-attachments/assets/ef532119-e8ed-4e2c-8599-831d9967d5f5" />
+<img width="465" height="412" alt="image" src="https://github.com/user-attachments/assets/786a1c89-cc5d-463c-8cf1-190cf163b1ad" />
+<img width="443" height="394" alt="image" src="https://github.com/user-attachments/assets/25327ea5-d34b-4ca0-9578-aa088c0a403a" />
+<img width="441" height="387" alt="image" src="https://github.com/user-attachments/assets/ef532119-e8ed-4e2c-8599-831d9967d5f5" />
 
 
 
