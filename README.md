@@ -1,3 +1,53 @@
+
+1. Business Understanding & Data
+Streaming platforms and music licensing services manage catalogues of millions of tracks. Manual genre tagging at this scale is not feasible – automated multi-label classification enables scalable content organisation, personalised recommendation, and rights management. This project addresses that problem on 107,000 tracks from the Free Music Archive, where each track may belong to multiple genres across a highly imbalanced label space (imbalance ratio ~50, 106 total classes).
+
+ 
+2. Data Preparation & Preprocessing
+•	Removed tracks without valid genre labels and non-musical categories (e.g. Experimental); restricted to 12 musically meaningful top-level genres → 90,086 clean audio files
+•	Compared four audio representations using a CNN baseline: raw waveform, Mel spectrogram, CQT spectrogram, and Mel+CQT combined via Short-Time Fourier Transform (STFT)
+•	Log-Mel pipeline (best performer): resampled to 32 kHz, STFT (25 ms window, 10 ms hop), 128 Mel bins, dB scale
+•	Challenge: spectrogram matrix representations exceeded 90 GB, requiring chunked processing pipelines on a cloud-based virtual machine
+
+3. Modeling
+3. Modeling
+Our work builds on Choi et al. (2017) – Convolutional Recurrent Neural Networks for Music Classification – reimplementing their CNN variants on log-Mel spectrograms and extending them systematically across three dimensions: kernel size (3×3 / 5×5 / 7×7), channel width, and time-frequency locality. Eight model variants were trained and compared in total.
+
+5. Results & Key Findings
+Section 5 – Ergebnistabelle fehlt direkt nach den Key Findings:
+Model	mAP	F1 Micro	Recall@3	AUC Macro
+paper k2c2 (baseline)	0.507	0.596	0.810	0.854
+improved k2c2-k5-all	0.546	0.615	0.844	0.880
+k1c2 (temporal-only)	0.412	0.524	0.802	0.831
+
+•	5×5 kernels across all layers (k2c2-k5-all) consistently outperform all other configurations – broader receptive fields capture a better mix of local detail and time-frequency context
+•	Modern training pipeline (AdamW, One-Cycle LR, dropout, weight decay) had greater impact than architectural changes – robust optimization matters more than architectural complexity
+•	Breaking time-frequency locality significantly hurts performance – genre-relevant cues live in local spectral patterns and cannot be recovered by deeper layers once lost
+•	Limitation: Rare genres remain difficult to detect – Macro-F1 stays well below Micro-F1; the model behaves conservatively and avoids assigning minority classes
+
+6. Explainable AI & Business Value
+
+6. Explainable AI – Grad-CAM
+What is Grad-CAM?
+•	Visualises which time-frequency regions of the input drive the model's genre predictions – making the decision process interpretable without modifying the architecture
+How to read it
+•	X-axis = time, Y-axis = Mel bins / frequency (0 = low, 128 = high)
+•	Red/white = high activation (model focuses here), black = ignored
+[Insert Grad-CAM evolution plots: Early / Mid / Late epochs]
+What the evolution reveals
+•	Early: all genres show identical activation at high frequencies – no genre-specific structure yet
+•	Mid: activations begin to diverge and shift toward musically relevant mid-frequency regions
+•	Late: each genre converges on a distinct, stable pattern learned entirely from data: 
+o	HipHop – broad mid-frequency activation (bins 20–80)
+o	Rock – sharp focused hotspot in lower-mid bins (30–50)
+o	SoulRnB – smooth broad activation in upper-mid bins (60–90)
+•	Confirms the model captures genuine musical structure rather than noise
+
+•	Business Value: With Recall@3 of 0.844, the model correctly suggests a relevant genre in its top-3 predictions for 84% of tracks – directly viable for semi-automated tagging workflows at scale, reducing manual effort for streaming platforms and music licensing services
+
+
+
+
 <details>
   <summary><span style="background-color: #ff0000ff;">detailed explanation</span></summary>
 **Note**: The jupyter notebooks and data will be added soon.
