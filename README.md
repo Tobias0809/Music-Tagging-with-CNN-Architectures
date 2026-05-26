@@ -1,4 +1,5 @@
-### detailed explaination
+<details>
+  <summary><span style="background-color: #ff0000ff;">detailed explanation</span></summary>
 **Note**: The jupyter notebooks and data will be added soon.
 
 # Music Tagging with CNN Architectures
@@ -35,7 +36,7 @@ Data:
 ## 2. Preprocessing, Transformations & further EDA
 
 <details>
-  <summary><span style="background-color: #ff0000ff;">Preprocessing & Transofrmations</span></summary>
+  <summary><span style="background-color: #ff0000ff;">Preprocessing & Transformations</span></summary>
 
 
 ### Prprocessing: 
