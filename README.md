@@ -4,14 +4,17 @@ Streaming platforms and music licensing services manage catalogues of millions o
 
  
 ## 2. Data Preparation & Preprocessing
-•	Removed tracks without valid genre labels and non-musical categories (e.g. Experimental); restricted to 12 musically meaningful top-level genres → 90,086 clean audio files
-•	Compared four audio representations using a CNN baseline: raw waveform, Mel spectrogram, CQT spectrogram, and Mel+CQT combined via Short-Time Fourier Transform (STFT)
-•	Log-Mel pipeline (best performer): resampled to 32 kHz, STFT (25 ms window, 10 ms hop), 128 Mel bins, dB scale
-•	Challenge: spectrogram matrix representations exceeded 90 GB, requiring chunked processing pipelines on a cloud-based virtual machine
 
-Example of a mel spectogram
-<img width="417" height="282" alt="image" src="https://github.com/user-attachments/assets/2011ba73-7f93-411c-a810-7ceb5a8dbcc1" />
+- Removed tracks without valid genre labels and non-musical categories (e.g. Experimental); restricted to 12 musically meaningful top-level genres → 90,086 clean audio files
+- Compared four audio representations using a CNN baseline: raw waveform, Mel spectrogram, CQT spectrogram, and Mel+CQT combined via Short-Time Fourier Transform (STFT)
+- Log-Mel pipeline (best performer): resampled to 32 kHz, STFT (25 ms window, 10 ms hop), 128 Mel bins, dB scale
+- Challenge: spectrogram matrix representations exceeded 90 GB, requiring chunked processing pipelines on a cloud-based virtual machine
 
+*Example of a Mel spectrogram*
+
+<p align="center">
+  <img width="417" height="282" alt="Mel spectrogram" src="https://github.com/user-attachments/assets/2011ba73-7f93-411c-a810-7ceb5a8dbcc1" />
+</p>
 
 
 ## 3. Modeling
