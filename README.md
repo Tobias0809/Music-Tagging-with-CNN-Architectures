@@ -3,7 +3,7 @@
 
 - Nowadays streaming platforms and music licensing services like Spotify manage millions 
   of tracks — manual genre tagging at this scale is simply not feasible
-- ➜ Automated multi-label genre classification enables three core use cases: scalable 
+ ➜ Automated multi-label genre classification enables three core use cases: scalable 
   content organisation, personalised recommendations, and rights managemen
 - This project tackles this challenge using 107,000 tracks from the Free Music Archive (FMA)
 - Each track can belong to multiple genres simultaneously, creating a multi-label classification challenge
