@@ -1,23 +1,23 @@
 
-1. Business Understanding & Data
+## 1. Business Understanding & Data
 Streaming platforms and music licensing services manage catalogues of millions of tracks. Manual genre tagging at this scale is not feasible – automated multi-label classification enables scalable content organisation, personalised recommendation, and rights management. This project addresses that problem on 107,000 tracks from the Free Music Archive, where each track may belong to multiple genres across a highly imbalanced label space (imbalance ratio ~50, 106 total classes).
 
  
-2. Data Preparation & Preprocessing
+## 2. Data Preparation & Preprocessing
 •	Removed tracks without valid genre labels and non-musical categories (e.g. Experimental); restricted to 12 musically meaningful top-level genres → 90,086 clean audio files
 •	Compared four audio representations using a CNN baseline: raw waveform, Mel spectrogram, CQT spectrogram, and Mel+CQT combined via Short-Time Fourier Transform (STFT)
 •	Log-Mel pipeline (best performer): resampled to 32 kHz, STFT (25 ms window, 10 ms hop), 128 Mel bins, dB scale
 •	Challenge: spectrogram matrix representations exceeded 90 GB, requiring chunked processing pipelines on a cloud-based virtual machine
 
 Example of a mel spectogram
-<img width="834" height="563" alt="image" src="https://github.com/user-attachments/assets/2011ba73-7f93-411c-a810-7ceb5a8dbcc1" />
+<img width="417" height="282" alt="image" src="https://github.com/user-attachments/assets/2011ba73-7f93-411c-a810-7ceb5a8dbcc1" />
 
 
-4. Modeling
-3. Modeling
+
+## 3. Modeling
 Our work builds on Choi et al. (2017) – Convolutional Recurrent Neural Networks for Music Classification – reimplementing their CNN variants on log-Mel spectrograms and extending them systematically across three dimensions: kernel size (3×3 / 5×5 / 7×7), channel width, and time-frequency locality. Eight model variants were trained and compared in total.
 
-5. Results & Key Findings
+## 4. Results & Key Findings
 Section 5 – Ergebnistabelle fehlt direkt nach den Key Findings:
 Model	mAP	F1 Micro	Recall@3	AUC Macro
 paper k2c2 (baseline)	0.507	0.596	0.810	0.854
@@ -93,7 +93,7 @@ Data:
   <summary><span style="background-color: #ff0000ff;">Preprocessing & Transformations</span></summary>
 
 
-### Prprocessing: 
+### Preprocessing: 
 
 Before generating spectrograms, we performed preprocessing (based on our EDA) on the FMA metadata to create a clean and usable dataset:
 
