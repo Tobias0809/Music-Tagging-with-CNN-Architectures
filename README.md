@@ -9,7 +9,11 @@ Streaming platforms and music licensing services manage catalogues of millions o
 •	Log-Mel pipeline (best performer): resampled to 32 kHz, STFT (25 ms window, 10 ms hop), 128 Mel bins, dB scale
 •	Challenge: spectrogram matrix representations exceeded 90 GB, requiring chunked processing pipelines on a cloud-based virtual machine
 
-3. Modeling
+Example of a mel spectogram
+<img width="834" height="563" alt="image" src="https://github.com/user-attachments/assets/2011ba73-7f93-411c-a810-7ceb5a8dbcc1" />
+
+
+4. Modeling
 3. Modeling
 Our work builds on Choi et al. (2017) – Convolutional Recurrent Neural Networks for Music Classification – reimplementing their CNN variants on log-Mel spectrograms and extending them systematically across three dimensions: kernel size (3×3 / 5×5 / 7×7), channel width, and time-frequency locality. Eight model variants were trained and compared in total.
 
