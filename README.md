@@ -1,6 +1,11 @@
 
-## 1. Business Understanding & Data
-Streaming platforms and music licensing services manage catalogues of millions of tracks. Manual genre tagging at this scale is not feasible – automated multi-label classification enables scalable content organisation, personalised recommendation, and rights management. This project addresses that problem on 107,000 tracks from the Free Music Archive, where each track may belong to multiple genres across a highly imbalanced label space (imbalance ratio ~50, 106 total classes).
+## 1. Business Understanding & Motivation
+
+- Streaming platforms and music licensing services manage catalogues of millions of tracks — manual genre tagging at this scale is simply not feasible
+- Automated multi-label genre classification enables three core use cases: scalable content organisation, personalised recommendations, and rights management
+- This project tackles the problem using 107,000 tracks from the Free Music Archive (FMA)
+- Each track can belong to multiple genres simultaneously, creating a multi-label classification challenge
+- The label space is highly imbalanced: 106 total genre classes with an imbalance ratio of ~50, meaning rare genres appear far less frequently than dominant ones
 
  
 ## 2. Data Preparation & Preprocessing
@@ -27,30 +32,35 @@ paper k2c2 (baseline)	0.507	0.596	0.810	0.854
 improved k2c2-k5-all	0.546	0.615	0.844	0.880
 k1c2 (temporal-only)	0.412	0.524	0.802	0.831
 
-•	5×5 kernels across all layers (k2c2-k5-all) consistently outperform all other configurations – broader receptive fields capture a better mix of local detail and time-frequency context
-•	Modern training pipeline (AdamW, One-Cycle LR, dropout, weight decay) had greater impact than architectural changes – robust optimization matters more than architectural complexity
-•	Breaking time-frequency locality significantly hurts performance – genre-relevant cues live in local spectral patterns and cannot be recovered by deeper layers once lost
-•	Limitation: Rare genres remain difficult to detect – Macro-F1 stays well below Micro-F1; the model behaves conservatively and avoids assigning minority classes
+-	5×5 kernels across all layers (k2c2-k5-all) consistently outperform all other configurations – broader receptive fields capture a better mix of local detail and time-frequency context
+-	Modern training pipeline (AdamW, One-Cycle LR, dropout, weight decay) had greater impact than architectural changes – robust optimization matters more than architectural complexity
+-	Breaking time-frequency locality significantly hurts performance – genre-relevant cues live in local spectral patterns and cannot be recovered by deeper layers once lost
+- Limitation: Rare genres remain difficult to detect – Macro-F1 stays well below Micro-F1; the model behaves conservatively and avoids assigning minority classes
 
-6. Explainable AI & Business Value
 
-6. Explainable AI – Grad-CAM
+## 5. Explainable AI – Grad-CAM
 What is Grad-CAM?
-•	Visualises which time-frequency regions of the input drive the model's genre predictions – making the decision process interpretable without modifying the architecture
+-Visualises which time-frequency regions of the input drive the model's genre predictions – making the decision process interpretable without modifying the architecture
 How to read it
-•	X-axis = time, Y-axis = Mel bins / frequency (0 = low, 128 = high)
-•	Red/white = high activation (model focuses here), black = ignored
-[Insert Grad-CAM evolution plots: Early / Mid / Late epochs]
-What the evolution reveals
-•	Early: all genres show identical activation at high frequencies – no genre-specific structure yet
-•	Mid: activations begin to diverge and shift toward musically relevant mid-frequency regions
-•	Late: each genre converges on a distinct, stable pattern learned entirely from data: 
-o	HipHop – broad mid-frequency activation (bins 20–80)
-o	Rock – sharp focused hotspot in lower-mid bins (30–50)
-o	SoulRnB – smooth broad activation in upper-mid bins (60–90)
-•	Confirms the model captures genuine musical structure rather than noise
+-	X-axis = time, Y-axis = Mel bins / frequency (0 = low, 128 = high)
+-	Red/white = high activation (model focuses here), black = ignored
 
-•	Business Value: With Recall@3 of 0.844, the model correctly suggests a relevant genre in its top-3 predictions for 84% of tracks – directly viable for semi-automated tagging workflows at scale, reducing manual effort for streaming platforms and music licensing services
+<img width="931" height="824" alt="image" src="https://github.com/user-attachments/assets/786a1c89-cc5d-463c-8cf1-190cf163b1ad" />
+<img width="886" height="789" alt="image" src="https://github.com/user-attachments/assets/25327ea5-d34b-4ca0-9578-aa088c0a403a" />
+<img width="882" height="774" alt="image" src="https://github.com/user-attachments/assets/ef532119-e8ed-4e2c-8599-831d9967d5f5" />
+
+
+
+What the evolution reveals
+-Early: all genres show identical activation at high frequencies – no genre-specific structure yet
+-	Mid: activations begin to diverge and shift toward musically relevant mid-frequency regions
+-	Late: each genre converges on a distinct, stable pattern learned entirely from data: 
+ -	HipHop – broad mid-frequency activation (bins 20–80)
+ -	Rock – sharp focused hotspot in lower-mid bins (30–50)
+ -	SoulRnB – smooth broad activation in upper-mid bins (60–90)
+-Confirms the model captures genuine musical structure rather than noise
+
+-	Business Value: With Recall@3 of 0.844, the model correctly suggests a relevant genre in its top-3 predictions for 84% of tracks – directly viable for semi-automated tagging workflows at scale, reducing manual effort for streaming platforms and music licensing services
 
 
 
